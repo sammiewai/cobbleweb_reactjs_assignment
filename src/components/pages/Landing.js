@@ -1,8 +1,16 @@
-import React from 'react'
+import {
+  Box,
+  Text,
+  Center
+} from "@chakra-ui/react";
 
 function Landing() {
   return (
-    <div>Landing</div>
+    <Box>
+      <Center>
+        <Text>Landing Page</Text>
+      </Center>
+    </Box>
   )
 }
 

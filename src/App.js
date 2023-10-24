@@ -1,7 +1,7 @@
 import React from 'react';
 import {
   ChakraProvider,
-  theme,
+  extendTheme
 } from '@chakra-ui/react';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 import RootLayout from './components/layouts/RootLayout'
@@ -18,8 +18,19 @@ const router = createBrowserRouter(
       <Route path="login" element={<Login />}/>
       <Route path="profile" element={<Profile />}/>
     </Route>
-  )
+  ) 
 )
+
+const theme = extendTheme({
+  styles: {
+    global: () => ({
+      body: {
+        bg: "#000",
+        fontFamily: '"Rubik", sans-serif'
+      },
+    }),
+  },
+})
 
 function App() {
   return (

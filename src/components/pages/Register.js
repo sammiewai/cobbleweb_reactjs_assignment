@@ -1,8 +1,51 @@
-import React from 'react'
+import {
+  Box,
+  Center,
+  HStack,
+  Text
+} from "@chakra-ui/react";
 
 function Register() {
   return (
-    <div>Register</div>
+    <Box m={6} pt={6}>
+      <Center>
+        <Box bg='#1a1c24' p={6} borderRadius='md' w={450}>
+          <form>
+            <div className="row">
+              <div className="form-group">
+                <label for="exampleFormControlInput1">Email address</label>
+                <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
+              </div>
+              <div className="form-group">
+                <label for="exampleFormControlSelect1">Example select</label>
+                <select className="form-control" id="exampleFormControlSelect1">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label for="exampleFormControlSelect2">Example multiple select</label>
+                <select multiple className="form-control" id="exampleFormControlSelect2">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label for="exampleFormControlTextarea1">Example textarea</label>
+                <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+            </div>
+          </form>
+        </Box>
+
+      </Center>
+    </Box>
   )
 }
 

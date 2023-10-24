@@ -20,7 +20,7 @@ const Header = () => {
                     justifyContent="space-between"
                     alignItems="center"
                 >
-                    <Text fontSize='2xl'><NavLink to="/">PRO-BOT</NavLink></Text>
+                    <Text fontSize='2xl'><NavLink to="/">LOGO</NavLink></Text>
                     <nav>
                         <HStack spacing={8}>
                             <NavLink to="register">
