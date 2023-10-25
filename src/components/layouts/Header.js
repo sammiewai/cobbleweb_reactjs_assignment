@@ -11,7 +11,6 @@ const Header = () => {
             color="white"
             pl='15px'
             pr='15px'
-            bg="#1a1c24"
             h='70px'
         >
             <Box>
