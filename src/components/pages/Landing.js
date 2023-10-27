@@ -6,7 +6,13 @@ import {
 
 function Landing() {
   return (
-    <Box>
+    <Box
+      pt={20}
+      h={900}
+      justifyContent="center"
+      alignItems="center"
+      backgroundColor="#2A4365"
+    >
       <Center>
         <Text>Landing Page</Text>
       </Center>

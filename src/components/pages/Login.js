@@ -44,7 +44,13 @@ function Login() {
     return navigate(`/profile`);
   }
   return (
-    <Box m={6} pt={6}>
+    <Box
+      pt={20}
+      h={900}
+      justifyContent="center"
+      alignItems="center"
+      backgroundColor="#2A4365"
+    >
       <Center>
         <Box bg='#1a1c24' p={6} borderRadius='md' w={450}>
           <Formik

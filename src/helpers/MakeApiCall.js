@@ -8,7 +8,8 @@ export async function MakeApiCall(params) {
         axios.request({
             method: params.method,
             url: url,
-            data: params.body
+            data: params.body,
+            headers: params.headers
         }).then((response) => {
             let result = response.data ? response.data : '';
             resolve(result);

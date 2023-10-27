@@ -3,9 +3,11 @@ import {
     HStack,
     Text
 } from "@chakra-ui/react";
-import { NavLink } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 const Header = () => {
+    const location = useLocation();
+    
     return (
         <Box
             color="white"
@@ -20,7 +22,7 @@ const Header = () => {
                     alignItems="center"
                 >
                     <Text fontSize='2xl'><NavLink to="/">LOGO</NavLink></Text>
-                    <nav>
+                    {(location.pathname) !== "/profile" ? <nav>
                         <HStack spacing={8}>
                             <NavLink to="register">
                                 Register
@@ -29,7 +31,7 @@ const Header = () => {
                                 Login
                             </NavLink>
                         </HStack>
-                    </nav>
+                    </nav> : ''}
                 </HStack>
             </Box>
         </Box>
