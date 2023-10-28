@@ -121,19 +121,19 @@ function Register() {
                       </div>
                       <div className="mb-3">
                         <div className="form-check">
-                        <label className="form-check-label">Active</label>
-                        <Field type="checkbox" className="form-check-input" id="active" name="active" />
-                        <ErrorMessage name='active'>
-                          {(errorMsg) => <small className='text-danger'>{errorMsg}</small>}
-                        </ErrorMessage>
+                          <label className="form-check-label">Active</label>
+                          <Field type="checkbox" className="form-check-input" id="active" name="active" />
+                          <ErrorMessage name='active'>
+                            {(errorMsg) => <small className='text-danger'>{errorMsg}</small>}
+                          </ErrorMessage>
                         </div>
                       </div>
                       <div className="mb-3 d-grid gap-2">
-                        <button type="submit" className="btn btn-primary rounded-0" disabled={!formik.isValid || formik.isSubmitting}>Register</button>
+                        <button type="submit" className="btn btn-sm btn-primary rounded-0" disabled={!formik.isValid || formik.isSubmitting}>Register</button>
                       </div>
                       {registrationErrors.length > 0 ? <small className='text-danger'>{registrationErrors}</small> : ''}
                       <div className="form-text text-reset">
-                        Already have an account? <NavLink to="/login"><span style={{color: "#16a3dc"}}>Login</span></NavLink>
+                        Already have an account? <NavLink to="/login"><span style={{ color: "#16a3dc" }}>Sign In</span></NavLink>
                       </div>
                     </div>
                   </Form>
