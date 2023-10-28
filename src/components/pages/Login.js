@@ -64,7 +64,7 @@ function Login() {
   return (
     <Box
       pt={20}
-      h={900}
+      h={700}
       justifyContent="center"
       alignItems="center"
       backgroundColor="#2A4365"
