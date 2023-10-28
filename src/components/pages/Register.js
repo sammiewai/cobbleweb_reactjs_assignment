@@ -6,8 +6,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { MakeApiCall } from "../../helpers/MakeApiCall";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Register() {
+  // Registration errors
+  const [registrationErrors, setRegistrationErrors] = useState('')
+
   // Enroll form formik init
   const initialValues = {
     firstName: "",
@@ -39,10 +43,13 @@ function Register() {
     });
 
     if (!enroll_resp.success) {
-      alert("Error occured.");
+      const errMsg = enroll_resp.message && typeof enroll_resp.message === 'string' ? enroll_resp.message : 'Server error occured. Try again later.'
+
+      setRegistrationErrors(errMsg)
       console.log(JSON.stringify(enroll_resp))
       return
     }
+    setRegistrationErrors('');
 
     // Formik props
     onSubmitProps.setSubmitting(false);
@@ -115,6 +122,7 @@ function Register() {
                       <div className="mb-3">
                         <button type="submit" className="btn btn-primary btn-sm rounded-0" disabled={!formik.isValid || formik.isSubmitting}>Register</button>
                       </div>
+                      {registrationErrors.length > 0 ? <small className='text-danger'>{registrationErrors}</small> : ''}
                     </div>
                   </Form>
                 )

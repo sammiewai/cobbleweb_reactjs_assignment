@@ -6,8 +6,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { MakeApiCall } from "../../helpers/MakeApiCall";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Login() {
+  // Login errors
+  const [loginErrors, setLoginErrors] = useState('')
+
   // Enroll form formik init
   const initialValues = {
     email: "",
@@ -24,24 +28,38 @@ function Login() {
   const navigate = useNavigate();
   const onSubmit = async (values, onSubmitProps) => {
     // Api call
-    const enroll_resp = await MakeApiCall({
+    const loginResp = await MakeApiCall({
       url: 'api/login',
       method: 'POST',
       body: values
     });
 
-    if (!enroll_resp.success) {
-      alert("Error occured.");
-      console.log(JSON.stringify(enroll_resp))
+    if (!loginResp.success) {
+      const errMsg = loginResp.message ? loginResp.message : 'Server error occured. Try again later.'
+
+      setLoginErrors(errMsg);
+      console.log(JSON.stringify(loginResp))
       return
     }
+    setLoginErrors('');
+    const accessToken = loginResp.data.accessToken;
 
     // Formik props
     onSubmitProps.setSubmitting(false);
     onSubmitProps.resetForm();
 
-    // If successful, navigate to login
-    return navigate(`/profile`);
+    // If successful, fetch profile and navigate to login
+    const profile = await MakeApiCall({
+      url: 'api/users/me',
+      method: 'GET',
+      headers: { "x-access-token": accessToken}
+    });
+    
+    if(!profile.success) {
+      setLoginErrors('Server error occured. Try again later.');
+    } else {
+      return navigate(`/profile`, { state: { profile: profile} }); // Pass the fetched profile with the route
+    }
   }
   return (
     <Box
@@ -78,6 +96,7 @@ function Login() {
                       <div className="mb-3">
                         <button type="submit" className="btn btn-primary btn-sm rounded-0" disabled={!formik.isValid || formik.isSubmitting}>Login</button>
                       </div>
+                      {loginErrors.length > 0 ? <small className='text-danger'>{loginErrors}</small> : ''}
                     </div>
                   </Form>
                 )

@@ -4,31 +4,12 @@ import {
   Avatar,
   Heading
 } from "@chakra-ui/react";
-import { useState, useEffect } from 'react'
 import PhotoSlider from "../layouts/PhotoSlider"
-import { MakeApiCall } from "../../helpers/MakeApiCall";
+import { useLocation } from "react-router-dom";
 
 function Profile() {
-  const [userData, setUserData] = useState({})
-  const fetchUserData = async () => { // TODO: Get access token on successful login
-    try {
-      const userResp = await MakeApiCall({
-        url: 'api/users/me',
-        method: 'GET',
-        headers: { "x-access-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTMsImlhdCI6MTY5ODM4MDgxOCwiZXhwIjoxNjk4Mzg0NDE4fQ.fRt6KHRT7n7dJDtHneRJughUNV87dUxPSzo2BQnj458" }
-      });
-
-      if (userResp.success) {
-        setUserData(userResp)
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  }
-
-  useEffect(() => {
-    fetchUserData()
-  }, [])
+  const {state} = useLocation(); // Get passed profile from route
+  const userData = state.profile; // TODO: disable access when null
 
   // User data
   const firstName = userData?.data?.firstName || ""
