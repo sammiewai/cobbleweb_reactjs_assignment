@@ -46,12 +46,12 @@ export default function PhotoSlider({photos}) {
             <CardBody>
               <Image alt={photo.title} src={photo.url} boxSize='200px' borderTopRadius="lg" borderBottomRadius="lg" />
               <Stack mt='6' spacing='3'>
-                <Heading fontSize='l'>{photo.title}</Heading>
+                <Heading fontSize='md'>Photo: {photo.title}</Heading>
               </Stack>
             </CardBody>
             <Divider />
             <CardFooter>
-              <Text mt={4} color='gray.500' fontSize='md' mb={2}>{photo.description}</Text>
+              <Text mt={4} color='gray.500' fontSize='xs' mb={2} fontStyle='italic'>{photo.description}</Text>
             </CardFooter>
           </Card>
           </SimpleGrid>

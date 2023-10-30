@@ -2,7 +2,8 @@ import {
   Box,
   VStack,
   Avatar,
-  Heading
+  Heading,
+  Divider
 } from "@chakra-ui/react";
 import PhotoSlider from "../layouts/PhotoSlider"
 import { useLocation } from "react-router-dom";
@@ -21,13 +22,12 @@ function Profile() {
 
   let userPhotos = []
   if (photos.length > 0) {
-    const photosBaseUrl = '/uploads/';
-
     userPhotos = photos.map((val, idx) => {
+      let parsedData = JSON.parse(val)
       return {
         id: idx,
-        url: photosBaseUrl + val.slice(14, val.length),
-        title: val.slice(14, val.length - 4),
+        url: (parsedData.path).slice(87),
+        title: (parsedData.name).slice(0, -4),
         description: `${fullName} image ${(idx + 1)}`
       }
     })
@@ -35,8 +35,8 @@ function Profile() {
 
   return (
     <Box
-      pt={20}
-      h={700}
+      pt={10}
+      h={900}
       justifyContent="center"
       alignItems="center"
       backgroundColor="#2A4365"
@@ -44,13 +44,14 @@ function Profile() {
       <VStack spacing={4}>
         <Avatar size='2xl' name={fullName} src={avatar} />
         <Heading as="h4" size='xl'>
-          {fullName}
+          Hello, I am {fullName}
         </Heading>
         <Heading as="h1" size='sm'>
-          {role}
+          Role: {role}
         </Heading>
+        <Divider />
+        <PhotoSlider photos = {userPhotos}/>
       </VStack>
-      <PhotoSlider photos = {userPhotos}/>
     </Box>
   )
 }
